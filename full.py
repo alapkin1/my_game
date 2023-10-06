@@ -19,6 +19,24 @@ class GameSprite(sprite.Sprite):
     def reset(self):
         window.blit(self.image,(self.rect.x, self.rect.y))
 
+class Player(GameSprite):
+    def update(self):
+        keys_pressed = key.get_pressed()   
+        if keys_pressed[K_a] and self.rect.x > 0:
+            self.rect.x -= self.speed 
+        if keys_pressed[K_d] and self.rect.x < 635:
+            self.rect.x += self.speed 
+        if keys_pressed[K_w] and self.rect.y < 100:
+            self.rect.y += self.speed 
+        if keys_pressed[K_s] and self.rect.y > 600:
+            self.rect.y += self.speed  
+
+class Enemy(GameSprite):
+    def update(self):
+        self.rect.y += self.speed
+
+
+
 FPS = 60
 clock = time.Clock()
 game = True
